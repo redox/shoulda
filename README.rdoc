@@ -119,7 +119,7 @@ Any *.rb file under RAILS_ROOT/test/shoulda_macros/ or vendor/(plugins|gems)/gem
 
 Add this to your Gemfile:
 
-  only :test do
+  group :test do
     gem "shoulda"
   end
 
@@ -140,7 +140,7 @@ Use this if you prefer the idea of being able to easily switch between using edg
 If you're using Shoulda with RSpec, we recommend that you add Gemfile lines
 for RSpec and Shoulda but do not auto-require the RSpec and Shoulda libraries:
 
-  only :test do
+  group :test do
     gem 'rspec',       :require_as => nil
     gem 'rspec-rails', :require_as => nil
     gem 'shoulda',     :require_as => nil
