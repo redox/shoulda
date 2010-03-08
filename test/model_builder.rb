@@ -53,11 +53,11 @@ class ActiveSupport::TestCase
 
   def define_routes(&block)
     @replaced_routes = ActionController::Routing::Routes
-    new_routes = ActionDispatch::Routing::RouteSet.new
+    @router = ActionDispatch::Routing::RouteSet.new
     silence_warnings do
-      ActionController::Routing.const_set('Routes', new_routes)
+      ActionController::Routing.const_set('Routes', @router)
     end
-    new_routes.draw(&block)
+    @router.draw(&block)
   end
 
   def build_response(&block)
@@ -72,7 +72,7 @@ class ActiveSupport::TestCase
     @controller = klass.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
-    @router     = ActionController::Routing::Routes
+    
     get :example
 
     @controller
@@ -98,6 +98,7 @@ class ActiveSupport::TestCase
       silence_warnings do
         ActionController::Routing.const_set('Routes', @replaced_routes)
       end
+      @router = ActionController::Routing::Routes
       Rails::Application.reload_routes!
     end
 
