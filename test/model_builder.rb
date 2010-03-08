@@ -72,6 +72,7 @@ class ActiveSupport::TestCase
     @controller = klass.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
+    @router     = ActionController::Routing::Routes
     get :example
 
     @controller
