@@ -92,15 +92,5 @@ class RespondWithMatcherTest < ActionController::TestCase # :nodoc:
     end
   end
   
-  context "a controller raising an error" do
-    setup do
-      @controller = build_response { raise RailsError }
-    end
-
-    should "reject responding with any status" do
-      assert_rejects respond_with(:success), @controller
-    end
-  end
-
 end
 
